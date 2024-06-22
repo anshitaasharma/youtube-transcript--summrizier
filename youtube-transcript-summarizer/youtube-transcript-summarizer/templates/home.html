@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <section>
+            <form method="POST">
+                <label id="mainheading" for="video_url">Enter YouTube Video URL:</label><br>
+                <input id="myforminput" type="text" id="video_url" name="video_url"><br>
+                <input id="formbutton" type="submit" value="Submit" class="button">
+            </form>
+
+            {% if summary %}
+            <h2 id="subheading">THE SUMMARY OF THE VIDEO :</h2>
+            <ul class="summarized-text" id="summary">
+                {% for sentence in summary %}
+                <li>{{ sentence }}</li>
+                {% endfor %}
+            </ul>
+
+            {% else %}
+            <p >NOTE : Please wait while the summary is being generated.
+             This may take 1-2 minutes.</p>
+            {% endif %}
+        </section>
+    </div>
+    <video src="{{ url_for('static', filename='earth_video.mp4') }}" autoplay muted loop></video>
+
+</body>
+
+</html>
